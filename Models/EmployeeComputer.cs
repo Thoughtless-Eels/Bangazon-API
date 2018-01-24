@@ -1,16 +1,23 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace thoughtless_eels.Models
 {
-    public class TrainingProgram
+    public class EmployeeComputer
     {
         [Key]
-        public int TrainingProgramId {get; set;}
+        public int EmployeeComputerId {get; set;}
 
         [Required]
-        public string TrainingProgramName {get; set;}
+        public int EmployeeId {get; set;}
+        public Employee Employee {get; set;}
+
+        [Required]
+        public int ComputerId {get; set;}
+        public Computer Computer {get; set;}
+
 
         [Required]
         [DataType(DataType.Date)]
@@ -21,9 +28,6 @@ namespace thoughtless_eels.Models
         [DataType(DataType.Date)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime EndDate { get; set; }
-
-        [Required]
-        public int MaxAttendees {get; set;}
 
     }
 }
