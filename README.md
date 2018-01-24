@@ -1,2 +1,5 @@
-# thoughtless-eels
-NSS Cohort 22 sprint #1
+# Bangazon API sprint.
+
+# ERD
+
+![ERD](https://i.imgur.com/ShSf7Fg.png)
