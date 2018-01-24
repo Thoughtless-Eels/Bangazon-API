@@ -20,6 +20,15 @@ namespace thoughtless_eels
 
         public IConfiguration Configuration { get; }
 
+         // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+            var connection = "Filename=/Users/j/Workspace/group-projects/thoughtless-eels/Data/InitialDB.db";
+            Console.WriteLine($"connection = {connection}");
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
