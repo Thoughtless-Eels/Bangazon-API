@@ -20,12 +20,12 @@ namespace thoughtless_eels {
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices (IServiceCollection services) {
-
-            services.AddMvc ();
-            var connection = System.Environment.GetEnvironmentVariable ("EelDB");
-            Console.WriteLine ($"connection = {connection}");
-            services.AddDbContext<ApplicationDbContext> (options => options.UseSqlite (connection));
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+            var connection =  System.Environment.GetEnvironmentVariable("EelDB");
+            Console.WriteLine($"connection = {connection}");
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
