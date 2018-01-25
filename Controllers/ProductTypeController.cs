@@ -11,11 +11,11 @@ using thoughtless_eels.Models;
 namespace thoughtless_eels.Controllers
 {
     [Route("api/[controller]")]
-    public class ProductTypeTypeController : Controller
+    public class ProductTypeController : Controller
     {
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public ProductTypeTypeController(ApplicationDbContext ctx)
+        public ProductTypeController(ApplicationDbContext ctx)
         {
             _context = ctx;
         }

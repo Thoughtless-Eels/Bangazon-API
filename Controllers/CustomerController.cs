@@ -12,7 +12,7 @@ using thoughtless_eels.Models;
 namespace thoughtless_eels.Controllers
 {
     [Route("api/[controller]")]
-    public class CustomersController : Controller
+    public class CustomerController : Controller
     {
         private bool CustomerExists(int customerId)
         {
@@ -20,7 +20,7 @@ namespace thoughtless_eels.Controllers
         }
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public CustomersController(ApplicationDbContext ctx)
+        public CustomerController(ApplicationDbContext ctx)
         {
             _context = ctx;
         }

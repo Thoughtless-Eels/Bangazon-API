@@ -13,14 +13,10 @@ namespace thoughtless_eels.Models
         public string TrainingProgramName {get; set;}
 
         [Required]
-        [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime EndDate { get; set; }
+        public string EndDate { get; set; }
 
         [Required]
         public int MaxAttendees {get; set;}

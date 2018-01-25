@@ -11,8 +11,8 @@ using thoughtless_eels.Data;
 namespace thoughtlesseels.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180124215606_InitialDBCreation")]
-    partial class InitialDBCreation
+    [Migration("20180125201046_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,16 +27,15 @@ namespace thoughtlesseels.Migrations
 
                     b.Property<int>("Available");
 
-                    b.Property<DateTime>("DecomissionedOn")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<string>("DecomissionedOn");
 
                     b.Property<int>("Malfunction");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<DateTime>("PurchasedOn")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<string>("PurchasedOn")
+                        .IsRequired();
 
                     b.HasKey("ComputerId");
 
@@ -66,8 +65,8 @@ namespace thoughtlesseels.Migrations
                     b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreatedOn")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<string>("CreatedOn")
+                        .IsRequired();
 
                     b.Property<int>("DaysInactive");
 
@@ -241,13 +240,13 @@ namespace thoughtlesseels.Migrations
                     b.Property<int>("TrainingProgramId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("EndDate")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<string>("EndDate")
+                        .IsRequired();
 
                     b.Property<int>("MaxAttendees");
 
-                    b.Property<DateTime>("StartDate")
-                        .ValueGeneratedOnAddOrUpdate();
+                    b.Property<string>("StartDate")
+                        .IsRequired();
 
                     b.Property<string>("TrainingProgramName")
                         .IsRequired();

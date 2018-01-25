@@ -15,13 +15,9 @@ namespace thoughtless_eels.Models
         public string Name {get; set;}
         
         [Required]
-        [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime PurchasedOn { get; set; }
+        public string PurchasedOn { get; set; }
 
-        [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime DecomissionedOn { get; set; }
+        public string DecomissionedOn { get; set; }
 
         [Required]
         public int Malfunction {get; set;}
