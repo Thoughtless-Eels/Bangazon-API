@@ -18,9 +18,7 @@ namespace thoughtless_eels.Models
 
 
         [Required]
-        [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedOn { get; set; }
+        public string CreatedOn { get; set; }
 
         [Required]
         public int DaysInactive {get; set;}      
