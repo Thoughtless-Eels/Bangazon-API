@@ -9,11 +9,11 @@ namespace thoughtless_eels.Controllers
 {
     
     [Route("api/[controller]")]
-    public class CurrentOrderController : Controller
+    public class TrainingProgramController : Controller
     {    
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public CurrentOrderController(ApplicationDbContext ctx)
+        public TrainingProgramController(ApplicationDbContext ctx)
         {
             _context = ctx;
         }
@@ -21,12 +21,12 @@ namespace thoughtless_eels.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var currentOrder = _context.CurrentOrder.ToList();
-            if (currentOrder == null)
+            var trainingProgram = _context.TrainingProgram.ToList();
+            if (trainingProgram == null)
             {
                 return NotFound();
             }
-            return Ok(currentOrder);
+            return Ok(trainingProgram);
         }
 
         [HttpGet("{id}", Name = "GetSingleOrder")]
@@ -39,14 +39,14 @@ namespace thoughtless_eels.Controllers
 
             try
             {
-                CurrentOrder currentOrder = _context.CurrentOrder.Single(c => c.CurrentOrderId == id);
+                TrainingProgram trainingProgram = _context.TrainingProgram.Single(c => c.TrainingProgramId == id);
 
-                if (currentOrder == null)
+                if (trainingProgram == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(currentOrder);
+                return Ok(trainingProgram);
             }
             catch (System.InvalidOperationException ex)
             {
@@ -55,14 +55,14 @@ namespace thoughtless_eels.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]CurrentOrder currentOrder)
+        public IActionResult Post([FromBody]TrainingProgram trainingProgram)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.CurrentOrder.Add(currentOrder);
+            _context.TrainingProgram.Add(trainingProgram);
 
             try
             {
@@ -70,7 +70,7 @@ namespace thoughtless_eels.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CurrentOrderExists(currentOrder.CurrentOrderId))
+                if (TrainingProgramExists(trainingProgram.TrainingProgramId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -79,29 +79,29 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = currentOrder.CurrentOrderId }, currentOrder);
+            return CreatedAtRoute("GetSingleOrder", new { id = trainingProgram.TrainingProgramId }, trainingProgram);
         }
 
                 [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]CurrentOrder currentOrder)
+        public IActionResult Put(int id, [FromBody]TrainingProgram trainingProgram)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != currentOrder.CurrentOrderId)
+            if (id != trainingProgram.TrainingProgramId)
             {
                 return BadRequest();
             }
-            _context.CurrentOrder.Update(currentOrder);
+            _context.TrainingProgram.Update(trainingProgram);
             try
             {
                 _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CurrentOrderExists(id))
+                if (!TrainingProgramExists(id))
                 {
                     return NotFound();
                 }
@@ -117,20 +117,20 @@ namespace thoughtless_eels.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            CurrentOrder currentOrder = _context.CurrentOrder.Single(c => c.CurrentOrderId == id);
+            TrainingProgram trainingProgram = _context.TrainingProgram.Single(c => c.TrainingProgramId == id);
 
-            if (currentOrder == null)
+            if (trainingProgram == null)
             {
                 return NotFound();
             }
-            _context.CurrentOrder.Remove(currentOrder);
+            _context.TrainingProgram.Remove(trainingProgram);
             _context.SaveChanges();
-            return Ok(currentOrder);
+            return Ok(trainingProgram);
         }
 
-        private bool CurrentOrderExists(int currentOrderId)
+        private bool TrainingProgramExists(int trainingProgramId)
         {
-            return _context.CurrentOrder.Any(c => c.CurrentOrderId == currentOrderId);
+            return _context.TrainingProgram.Any(c => c.TrainingProgramId == trainingProgramId);
         }
     }
 }

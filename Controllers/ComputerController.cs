@@ -9,11 +9,11 @@ namespace thoughtless_eels.Controllers
 {
     
     [Route("api/[controller]")]
-    public class CurrentOrderController : Controller
+    public class ComputerController : Controller
     {    
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public CurrentOrderController(ApplicationDbContext ctx)
+        public ComputerController(ApplicationDbContext ctx)
         {
             _context = ctx;
         }
@@ -21,12 +21,12 @@ namespace thoughtless_eels.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var currentOrder = _context.CurrentOrder.ToList();
-            if (currentOrder == null)
+            var computer = _context.Computer.ToList();
+            if (computer == null)
             {
                 return NotFound();
             }
-            return Ok(currentOrder);
+            return Ok(computer);
         }
 
         [HttpGet("{id}", Name = "GetSingleOrder")]
@@ -39,14 +39,14 @@ namespace thoughtless_eels.Controllers
 
             try
             {
-                CurrentOrder currentOrder = _context.CurrentOrder.Single(c => c.CurrentOrderId == id);
+                Computer computer = _context.Computer.Single(c => c.ComputerId == id);
 
-                if (currentOrder == null)
+                if (computer == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(currentOrder);
+                return Ok(computer);
             }
             catch (System.InvalidOperationException ex)
             {
@@ -55,14 +55,14 @@ namespace thoughtless_eels.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]CurrentOrder currentOrder)
+        public IActionResult Post([FromBody]Computer computer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.CurrentOrder.Add(currentOrder);
+            _context.Computer.Add(computer);
 
             try
             {
@@ -70,7 +70,7 @@ namespace thoughtless_eels.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CurrentOrderExists(currentOrder.CurrentOrderId))
+                if (ComputerExists(computer.ComputerId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -79,29 +79,29 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = currentOrder.CurrentOrderId }, currentOrder);
+            return CreatedAtRoute("GetSingleOrder", new { id = computer.ComputerId }, computer);
         }
 
                 [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]CurrentOrder currentOrder)
+        public IActionResult Put(int id, [FromBody]Computer computer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != currentOrder.CurrentOrderId)
+            if (id != computer.ComputerId)
             {
                 return BadRequest();
             }
-            _context.CurrentOrder.Update(currentOrder);
+            _context.Computer.Update(computer);
             try
             {
                 _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CurrentOrderExists(id))
+                if (!ComputerExists(id))
                 {
                     return NotFound();
                 }
@@ -117,20 +117,20 @@ namespace thoughtless_eels.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            CurrentOrder currentOrder = _context.CurrentOrder.Single(c => c.CurrentOrderId == id);
+            Computer computer = _context.Computer.Single(c => c.ComputerId == id);
 
-            if (currentOrder == null)
+            if (computer == null)
             {
                 return NotFound();
             }
-            _context.CurrentOrder.Remove(currentOrder);
+            _context.Computer.Remove(computer);
             _context.SaveChanges();
-            return Ok(currentOrder);
+            return Ok(computer);
         }
 
-        private bool CurrentOrderExists(int currentOrderId)
+        private bool ComputerExists(int computerId)
         {
-            return _context.CurrentOrder.Any(c => c.CurrentOrderId == currentOrderId);
+            return _context.Computer.Any(c => c.ComputerId == computerId);
         }
     }
 }

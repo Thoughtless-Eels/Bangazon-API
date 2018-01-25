@@ -9,11 +9,11 @@ namespace thoughtless_eels.Controllers
 {
     
     [Route("api/[controller]")]
-    public class CurrentOrderController : Controller
+    public class PaymentTypeController : Controller
     {    
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public CurrentOrderController(ApplicationDbContext ctx)
+        public PaymentTypeController(ApplicationDbContext ctx)
         {
             _context = ctx;
         }
@@ -21,12 +21,12 @@ namespace thoughtless_eels.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var currentOrder = _context.CurrentOrder.ToList();
-            if (currentOrder == null)
+            var paymentType = _context.PaymentType.ToList();
+            if (paymentType == null)
             {
                 return NotFound();
             }
-            return Ok(currentOrder);
+            return Ok(paymentType);
         }
 
         [HttpGet("{id}", Name = "GetSingleOrder")]
@@ -39,14 +39,14 @@ namespace thoughtless_eels.Controllers
 
             try
             {
-                CurrentOrder currentOrder = _context.CurrentOrder.Single(c => c.CurrentOrderId == id);
+                PaymentType paymentType = _context.PaymentType.Single(c => c.PaymentTypeId == id);
 
-                if (currentOrder == null)
+                if (paymentType == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(currentOrder);
+                return Ok(paymentType);
             }
             catch (System.InvalidOperationException ex)
             {
@@ -55,14 +55,14 @@ namespace thoughtless_eels.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]CurrentOrder currentOrder)
+        public IActionResult Post([FromBody]PaymentType paymentType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.CurrentOrder.Add(currentOrder);
+            _context.PaymentType.Add(paymentType);
 
             try
             {
@@ -70,7 +70,7 @@ namespace thoughtless_eels.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CurrentOrderExists(currentOrder.CurrentOrderId))
+                if (PaymentTypeExists(paymentType.PaymentTypeId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -79,29 +79,29 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = currentOrder.CurrentOrderId }, currentOrder);
+            return CreatedAtRoute("GetSingleOrder", new { id = paymentType.PaymentTypeId }, paymentType);
         }
 
                 [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]CurrentOrder currentOrder)
+        public IActionResult Put(int id, [FromBody]PaymentType paymentType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != currentOrder.CurrentOrderId)
+            if (id != paymentType.PaymentTypeId)
             {
                 return BadRequest();
             }
-            _context.CurrentOrder.Update(currentOrder);
+            _context.PaymentType.Update(paymentType);
             try
             {
                 _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CurrentOrderExists(id))
+                if (!PaymentTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -117,20 +117,20 @@ namespace thoughtless_eels.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            CurrentOrder currentOrder = _context.CurrentOrder.Single(c => c.CurrentOrderId == id);
+            PaymentType paymentType = _context.PaymentType.Single(c => c.PaymentTypeId == id);
 
-            if (currentOrder == null)
+            if (paymentType == null)
             {
                 return NotFound();
             }
-            _context.CurrentOrder.Remove(currentOrder);
+            _context.PaymentType.Remove(paymentType);
             _context.SaveChanges();
-            return Ok(currentOrder);
+            return Ok(paymentType);
         }
 
-        private bool CurrentOrderExists(int currentOrderId)
+        private bool PaymentTypeExists(int paymentTypeId)
         {
-            return _context.CurrentOrder.Any(c => c.CurrentOrderId == currentOrderId);
+            return _context.PaymentType.Any(c => c.PaymentTypeId == paymentTypeId);
         }
     }
 }
