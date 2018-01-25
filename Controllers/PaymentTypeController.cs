@@ -79,7 +79,7 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = paymentType.PaymentTypeId }, paymentType);
+            return CreatedAtRoute("GetSinglePayment", new { id = paymentType.PaymentTypeId }, paymentType);
         }
 
                 [HttpPut("{id}")]

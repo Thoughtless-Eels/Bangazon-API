@@ -79,7 +79,7 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = computer.ComputerId }, computer);
+            return CreatedAtRoute("GetSingleComputer", new { id = computer.ComputerId }, computer);
         }
 
                 [HttpPut("{id}")]

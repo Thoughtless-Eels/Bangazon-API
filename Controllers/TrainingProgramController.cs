@@ -29,7 +29,7 @@ namespace thoughtless_eels.Controllers
             return Ok(trainingProgram);
         }
 
-        [HttpGet("{id}", Name = "GetSingleOrder")]
+        [HttpGet("{id}", Name = "GetSingleTrainingProgram")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
