@@ -17,11 +17,11 @@ namespace thoughtless_eels.Controllers
 
     // do I need to change the router name to something more specific?
     [Route("api/[controller]")]
-    public class TrainingProgramController : Controller
+    public class DepartmentController : Controller
     {
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public TrainingProgramController(ApplicationDbContext ctx)
+        public DepartmentController(ApplicationDbContext ctx)
         {
             _context = ctx;
         }
@@ -31,19 +31,19 @@ namespace thoughtless_eels.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var TrainingProgram = _context.TrainingProgram.ToList();
-            if (TrainingProgram == null)
+            var Department = _context.Department.ToList();
+            if (Department == null)
             {
                 return NotFound();
             }
-            return Ok(TrainingProgram);
+            return Ok(Department);
         }
 
 
 
         // Refrencing the model?
         // GET api/album/5
-        [HttpGet("{id}", Name = "GetSingleTrainingProgram")]
+        [HttpGet("{id}", Name = "GetSingleDepartment")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
@@ -53,14 +53,14 @@ namespace thoughtless_eels.Controllers
 
             try
             {
-                TrainingProgram trainingprogram = _context.TrainingProgram.Single(g => g.TrainingProgramId == id);
+                Department department = _context.Department.Single(g => g.DepartmentId == id);
 
-                if (trainingprogram == null)
+                if (department == null)
                 {
                     return NotFound();
                 }
 
-                return Ok(trainingprogram);
+                return Ok(department);
             }
 
             catch (System.InvalidOperationException ex)
@@ -71,14 +71,14 @@ namespace thoughtless_eels.Controllers
         // Initiate the Post Request
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]TrainingProgram trainingprogram)
+        public IActionResult Post([FromBody]Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.TrainingProgram.Add(trainingprogram);
+            _context.Department.Add(department);
 
             try
             {
@@ -86,7 +86,7 @@ namespace thoughtless_eels.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TrainingProgramExists(trainingprogram.TrainingProgramId))
+                if (DepartmentExists(department.DepartmentId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -95,30 +95,30 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleTrainingProgram", new { id = trainingprogram.TrainingProgramId }, trainingprogram);
+            return CreatedAtRoute("GetSingleDepartment", new { id = department.DepartmentId }, department);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]TrainingProgram trainingprogram)
+        public IActionResult Put(int id, [FromBody]Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != trainingprogram.TrainingProgramId)
+            if (id != department.DepartmentId)
             {
                 return BadRequest();
             }
-            _context.TrainingProgram.Update(trainingprogram);
+            _context.Department.Update(department);
             try
             {
                 _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TrainingProgramExists(id))
+                if (!DepartmentExists(id))
                 {
                     return NotFound();
                 }
@@ -135,22 +135,22 @@ namespace thoughtless_eels.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            TrainingProgram trainingprogram = _context.TrainingProgram.Single(g => g.TrainingProgramId == id);
+            Department department = _context.Department.Single(g => g.DepartmentId == id);
 
-            if (trainingprogram == null)
+            if (department == null)
             {
                 return NotFound();
             }
-            _context.TrainingProgram.Remove(trainingprogram);
+            _context.Department.Remove(department);
             _context.SaveChanges();
-            return Ok(trainingprogram);
+            return Ok(department);
         }
 
 
         // create the instance of the training program:
-        private bool TrainingProgramExists(int trainingprogramId)
+        private bool DepartmentExists(int departmentId)
         {
-            return _context.TrainingProgram.Any(g => g.TrainingProgramId == trainingprogramId);
+            return _context.Department.Any(g => g.DepartmentId == departmentId);
         }
 
     }
