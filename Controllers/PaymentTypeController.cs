@@ -29,7 +29,7 @@ namespace thoughtless_eels.Controllers
             return Ok(paymentType);
         }
 
-        [HttpGet("{id}", Name = "GetSingleOrder")]
+        [HttpGet("{id}", Name = "GetSinglePayment")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
@@ -79,7 +79,7 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = paymentType.PaymentTypeId }, paymentType);
+            return CreatedAtRoute("GetSinglePayment", new { id = paymentType.PaymentTypeId }, paymentType);
         }
 
                 [HttpPut("{id}")]

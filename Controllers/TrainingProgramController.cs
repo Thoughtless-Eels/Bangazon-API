@@ -29,7 +29,7 @@ namespace thoughtless_eels.Controllers
             return Ok(trainingProgram);
         }
 
-        [HttpGet("{id}", Name = "GetSingleOrder")]
+        [HttpGet("{id}", Name = "GetSingleTrainingProgram")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
@@ -79,7 +79,7 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = trainingProgram.TrainingProgramId }, trainingProgram);
+            return CreatedAtRoute("GetSingleTrainingProgram", new { id = trainingProgram.TrainingProgramId }, trainingProgram);
         }
 
                 [HttpPut("{id}")]

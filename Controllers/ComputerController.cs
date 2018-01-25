@@ -29,7 +29,7 @@ namespace thoughtless_eels.Controllers
             return Ok(computer);
         }
 
-        [HttpGet("{id}", Name = "GetSingleOrder")]
+        [HttpGet("{id}", Name = "GetSingleComputer")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
@@ -79,7 +79,7 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = computer.ComputerId }, computer);
+            return CreatedAtRoute("GetSingleComputer", new { id = computer.ComputerId }, computer);
         }
 
                 [HttpPut("{id}")]
