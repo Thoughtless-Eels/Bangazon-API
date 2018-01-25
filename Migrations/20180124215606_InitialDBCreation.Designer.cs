@@ -11,7 +11,7 @@ using thoughtless_eels.Data;
 namespace thoughtlesseels.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180124214025_InitialDBCreation")]
+    [Migration("20180124215606_InitialDBCreation")]
     partial class InitialDBCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
