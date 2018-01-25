@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace thoughtlesseels.Migrations
 {
-    public partial class InitialDBCreation : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,10 +15,10 @@ namespace thoughtlesseels.Migrations
                     ComputerId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Available = table.Column<int>(nullable: false),
-                    DecomissionedOn = table.Column<DateTime>(nullable: false),
+                    DecomissionedOn = table.Column<string>(nullable: true),
                     Malfunction = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    PurchasedOn = table.Column<DateTime>(nullable: false)
+                    PurchasedOn = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +31,7 @@ namespace thoughtlesseels.Migrations
                 {
                     CustomerId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    CreatedOn = table.Column<string>(nullable: false),
                     DaysInactive = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false)
@@ -74,9 +74,9 @@ namespace thoughtlesseels.Migrations
                 {
                     TrainingProgramId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    EndDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<string>(nullable: false),
                     MaxAttendees = table.Column<int>(nullable: false),
-                    StartDate = table.Column<DateTime>(nullable: false),
+                    StartDate = table.Column<string>(nullable: false),
                     TrainingProgramName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
