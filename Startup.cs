@@ -23,8 +23,8 @@ namespace thoughtless_eels {
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            var connection =  $"Filename={System.Environment.GetEnvironmentVariable("EelDB")}";
-            Console.WriteLine($"connection = {connection}");
+            var connection = $"Filename={System.Environment.GetEnvironmentVariable("EelDB")}";
+            Console.WriteLine($"{connection}");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connection));
         }
 
