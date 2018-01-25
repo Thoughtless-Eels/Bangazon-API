@@ -29,7 +29,7 @@ namespace thoughtless_eels.Controllers
             return Ok(computer);
         }
 
-        [HttpGet("{id}", Name = "GetSingleOrder")]
+        [HttpGet("{id}", Name = "GetSingleComputer")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)

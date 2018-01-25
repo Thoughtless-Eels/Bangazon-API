@@ -29,7 +29,7 @@ namespace thoughtless_eels.Controllers
             return Ok(paymentType);
         }
 
-        [HttpGet("{id}", Name = "GetSingleOrder")]
+        [HttpGet("{id}", Name = "GetSinglePayment")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)

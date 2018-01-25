@@ -79,7 +79,7 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = trainingProgram.TrainingProgramId }, trainingProgram);
+            return CreatedAtRoute("GetSingleTrainingProgram", new { id = trainingProgram.TrainingProgramId }, trainingProgram);
         }
 
                 [HttpPut("{id}")]
