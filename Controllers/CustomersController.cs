@@ -54,5 +54,90 @@ namespace thoughtless_eels.Controllers
             return CreatedAtRoute("GetSingleCustomer", new { id = customer.CustomerId }, customer);
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var customers = _context.Customer.ToList();
+            if (customers == null)
+            {
+                return NotFound();
+            }
+            return Ok(customers);
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}", Name = "GetSingleCustomer")]
+        public IActionResult Get(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                Customer customer = _context.Customer.Single(g => g.CustomerId == id);
+
+                if (customer == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(customer);
+            }
+            catch (System.InvalidOperationException ex)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody]Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != customer.CustomerId)
+            {
+                return BadRequest();
+            }
+            _context.Customer.Update(customer);
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CustomerExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return new StatusCodeResult(StatusCodes.Status204NoContent);
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Customer customer = _context.Customer.Single(g => g.CustomerId == id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            _context.Customer.Remove(customer);
+            _context.SaveChanges();
+            return Ok(customer);
+        }
+
+
     }
 }
