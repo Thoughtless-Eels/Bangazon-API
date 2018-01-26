@@ -122,22 +122,5 @@ namespace thoughtless_eels.Controllers
 
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            Employee employee = _context.Employee.Single(g => g.EmployeeId == id);
-
-            if (employee == null)
-            {
-                return NotFound();
-            }
-            _context.Employee.Remove(employee);
-            _context.SaveChanges();
-            return Ok(employee);
-        }
-
-
     }
 }

@@ -123,21 +123,5 @@ namespace thoughtless_eels.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            Customer customer = _context.Customer.Single(g => g.CustomerId == id);
-
-            if (customer == null)
-            {
-                return NotFound();
-            }
-            _context.Customer.Remove(customer);
-            _context.SaveChanges();
-            return Ok(customer);
-        }
-
-
     }
 }

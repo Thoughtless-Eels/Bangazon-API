@@ -13,7 +13,7 @@ namespace thoughtless_eels.Models
         public string TrainingProgramName {get; set;}
 
         [Required]
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Required]
         public string EndDate { get; set; }

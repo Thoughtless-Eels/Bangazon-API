@@ -10,11 +10,9 @@ namespace thoughtless_eels.Data
             : base(options)
         { }
 
-        //What does this do?
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         }
-
 
         public DbSet<Computer> Computer { get; set; }
         public DbSet<Customer> Customer { get; set; }
@@ -28,5 +26,7 @@ namespace thoughtless_eels.Data
         public DbSet<ProductType> ProductType { get; set; }
         public DbSet<TrainingProgram> TrainingProgram { get; set; }
         public DbSet<CurrentOrder> CurrentOrder { get; set; }
+
+
     }
 }
