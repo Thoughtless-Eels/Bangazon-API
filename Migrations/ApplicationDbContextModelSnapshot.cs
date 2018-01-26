@@ -244,8 +244,7 @@ namespace thoughtlesseels.Migrations
 
                     b.Property<int>("MaxAttendees");
 
-                    b.Property<string>("StartDate")
-                        .IsRequired();
+                    b.Property<DateTime>("StartDate");
 
                     b.Property<string>("TrainingProgramName")
                         .IsRequired();
