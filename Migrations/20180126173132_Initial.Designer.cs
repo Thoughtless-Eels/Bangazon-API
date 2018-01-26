@@ -11,7 +11,7 @@ using thoughtless_eels.Data;
 namespace thoughtlesseels.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180125201046_Initial")]
+    [Migration("20180126173132_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -245,8 +245,7 @@ namespace thoughtlesseels.Migrations
 
                     b.Property<int>("MaxAttendees");
 
-                    b.Property<string>("StartDate")
-                        .IsRequired();
+                    b.Property<DateTime>("StartDate");
 
                     b.Property<string>("TrainingProgramName")
                         .IsRequired();
