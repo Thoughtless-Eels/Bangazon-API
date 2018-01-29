@@ -14,10 +14,13 @@ namespace thoughtless_eels.Controllers
     [Route("api/[controller]")]
     public class CustomerController : Controller
     {
+        // create a function that returns the customer data
+        // corresponding to the id passed in
         private bool CustomerExists(int customerId)
         {
             return _context.Customer.Any(g => g.CustomerId == customerId);
         }
+        // capture an instance of application db context
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
         public CustomerController(ApplicationDbContext ctx)
@@ -25,17 +28,24 @@ namespace thoughtless_eels.Controllers
             _context = ctx;
         }
 
+        
         // POST api/values
         [HttpPost]
+        // pass in a customer 
         public IActionResult Post([FromBody]Customer customer)
         {
+            // check that the input matches the strucure of our model
             if (!ModelState.IsValid)
             {
+                // throw an error if not
                 return BadRequest(ModelState);
             }
 
+            // add customer to the db
             _context.Customer.Add(customer);
 
+            // attempt to save the changes and throw an error if any 
+            // errors occur
             try
             {
                 _context.SaveChanges();
