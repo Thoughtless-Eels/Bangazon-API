@@ -91,8 +91,8 @@ namespace thoughtless_eels.Controllers
             }
 
 			CurrentOrder currentOrder = _context.CurrentOrder.Single(co => co.CurrentOrderId == id);
-
-            if (currentOrder == null)
+			Product Product = _context.Product.Single(p => p.ProductId == ProductOrder.ProductId);
+            if (currentOrder == null || Product == null)
             {
                 return NotFound();
             }
