@@ -81,31 +81,7 @@ namespace thoughtless_eels.Controllers {
             return CreatedAtRoute ("GetSingleProduct", new { id = product.ProductId }, product);
         }
 
-        // POST
-        [HttpPost ("ProductOrder")]
-        public IActionResult Post ([FromBody] ProductOrder ProductOrder) {
-            // Check if data matches the Model 
-            if (!ModelState.IsValid) {
-                // return 404
-                return BadRequest (ModelState);
-            }
-
-            // Check DB to ensure referenced tables exist
-            Product product = _context.Product.Single (p => p.ProductId == ProductOrder.ProductId);
-            CurrentOrder currentOrder = _context.CurrentOrder.Single (co => co.CurrentOrderId == ProductOrder.CurrentOrderId);
-
-            // Return 404 if null
-            if (product == null || currentOrder == null) {
-                return NotFound ();
-            }
-            // Add order to the table
-            _context.ProductOrder.Add (ProductOrder);
-            // Save changes
-            _context.SaveChanges ();
-            // return created CurrentOrder method
-            return CreatedAtRoute ("GetSingleProduct", new { id = ProductOrder.CurrentOrderId }, ProductOrder);
-        }
-
+        
         // PUT api/values/5
         [HttpPut ("{id}")]
         public IActionResult Put (int id, [FromBody] Product product) {

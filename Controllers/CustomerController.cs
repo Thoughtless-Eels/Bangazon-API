@@ -26,29 +26,6 @@ namespace thoughtless_eels.Controllers
         }
 
         // POST api/values
-        [HttpPost ("currentOrder")]
-        public IActionResult Post([FromBody]CurrentOrder CurrentOrder)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Customer customer = _context.Customer.Single(c => c.CustomerId == CurrentOrder.CustomerId);
-			PaymentType paymentType = _context.PaymentType.Single(pt => pt.PaymentTypeId == CurrentOrder.PaymentTypeId);
-
-            if (paymentType == null || customer == null)
-            {
-                return NotFound();
-            }
-
-            _context.CurrentOrder.Add(CurrentOrder);
-            _context.SaveChanges();
-            return CreatedAtRoute("GetSingleCustomer", new { id = CurrentOrder.CustomerId }, CurrentOrder);
-        }
-
-
-
         [HttpPost]
         public IActionResult Post([FromBody]Customer customer)
         {
