@@ -7,7 +7,7 @@
 The Thoughtless Eels
 
 Overall Summary:
-Working with the C# language and Asp.Net as our web application framework, the Thoughtless Eels are working to create a backend system that will allow other Developers the ability to add, search and at times delete the information from our company, Bangazon. These developers will have accesss to a myraid of tables from: Employeess, Training Programs, Computers, Products, Customers and these Customer's Active Orders. You will make your requests through PostMan and will check the Database (SQLite) for any new updates.
+Working with the C# language and Asp.Net as our web application framework, the Thoughtless Eels are working to create a backend system that will allow other Developers the ability to add, search and at times delete the information from our company, Bangazon. These developers will have accesss to a myriad of tables from: Employeess, Training Programs, Computers, Products, Customers and these Customer's Active Orders. You will make your requests through PostMan and will check the Database (SQLite) for any new updates.
 
 How to Install BangazonAPI:
 The Thoughtless Eels database is going to be hosted on your local computer for now. 
