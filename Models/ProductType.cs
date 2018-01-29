@@ -1,3 +1,4 @@
+// // Model for the ProductType Table:
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,7 @@ namespace thoughtless_eels.Models
 {
     public class ProductType
     {
+        // Establish the Primary Key:
         [Key]
         public int ProductTypeId {get; set;}
 

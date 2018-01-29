@@ -8,21 +8,22 @@ namespace thoughtless_eels.Models
 {
     public class EmployeeComputer
     {
+        // Establish the Primary Key
         [Key]
-        public int EmployeeComputerId {get; set;}
-
+        public int EmployeeComputerId { get; set; }
+        // First Foreign Key:
         [Required]
-        public int EmployeeId {get; set;}
-        public Employee Employee {get; set;}
-
+        public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
+        // Second Foreign Key:
         [Required]
-        public int ComputerId {get; set;}
-        public Computer Computer {get; set;}
+        public int ComputerId { get; set; }
+        public Computer Computer { get; set; }
 
-
+        // Required Property:
         [Required]
         public DateTime StartDate { get; set; }
-
+        // Required Property:
         [Required]
         public DateTime EndDate { get; set; }
 

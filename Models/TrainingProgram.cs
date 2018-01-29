@@ -1,3 +1,4 @@
+// Model for the TrainingProgram Table:
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,6 +7,7 @@ namespace thoughtless_eels.Models
 {
     public class TrainingProgram
     {
+        // Establish the Primary Key:
         [Key]
         public int TrainingProgramId {get; set;}
 

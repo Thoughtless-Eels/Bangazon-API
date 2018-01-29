@@ -8,6 +8,7 @@ namespace thoughtless_eels.Models
 {
     public class Product
     {
+        // Establish the Primary Key:
         [Key]
         public int ProductId {get; set;}
 

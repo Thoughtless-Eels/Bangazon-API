@@ -1,4 +1,4 @@
-// // Model for the Department Table:
+// Model for the Department Table:
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,14 +8,17 @@ namespace thoughtless_eels.Models
 {
     public class Department
     {
+        // Establish the Primary Key:
         [Key]
-        public int DepartmentId {get; set;}
+        public int DepartmentId { get; set; }
 
+        // Required Property:
         [Required]
-        public string Name {get; set;}
+        public string Name { get; set; }
 
+        // Required Property:
         [Required]
-        public int Budget {get; set;}
-            
+        public int Budget { get; set; }
+
     }
 }

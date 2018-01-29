@@ -8,6 +8,7 @@ namespace thoughtless_eels.Models
 {
     public class EmployeeTraining
     {
+        // Establish the Primary Key:
         [Key]
 
         public int EmployeeTrainingId { get; set; }

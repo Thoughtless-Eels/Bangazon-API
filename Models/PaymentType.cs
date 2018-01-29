@@ -8,6 +8,7 @@ namespace thoughtless_eels.Models
 {
     public class PaymentType
     {
+        // Establish the Primary Key:
         [Key]
         public int PaymentTypeId {get; set;}
 

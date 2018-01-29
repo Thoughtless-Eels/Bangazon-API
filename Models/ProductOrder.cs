@@ -1,3 +1,4 @@
+// Model for the ProductOrder Table:
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,6 +8,7 @@ namespace thoughtless_eels.Models
 {
     public class ProductOrder
     {
+        // Establish the Primary Key:
         [Key]
         public int ProductOrderId { get; set; }
 
