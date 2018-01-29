@@ -7,8 +7,9 @@ using thoughtless_eels.Models;
 
 namespace thoughtless_eels.Controllers
 {
-    
+    // tell .net that this is a controller and how to name the url
     [Route("api/[controller]")]
+    // define class
     public class ComputerController : Controller
     {    
         private ApplicationDbContext _context;
@@ -17,10 +18,12 @@ namespace thoughtless_eels.Controllers
         {
             _context = ctx;
         }
-
+        // Request statement
         [HttpGet]
+        //GET Method
         public IActionResult Get()
         {
+            // store all table info in variable, return variable. if table is empty, throw error
             var computer = _context.Computer.ToList();
             if (computer == null)
             {
@@ -28,19 +31,20 @@ namespace thoughtless_eels.Controllers
             }
             return Ok(computer);
         }
-
+        // GET single item Method, takes id of single item being requested as a parameter
         [HttpGet("{id}", Name = "GetSingleComputer")]
         public IActionResult Get(int id)
         {
+            //check format of request, if bad, throw error
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            // Check DB to ensure referenced tables exist
             try
             {
                 Computer computer = _context.Computer.Single(c => c.ComputerId == id);
-
+                //throw error if computerId that is requested deosn't exist
                 if (computer == null)
                 {
                     return NotFound();
@@ -48,6 +52,7 @@ namespace thoughtless_eels.Controllers
 
                 return Ok(computer);
             }
+            //throw invalid operation exception error
             catch (System.InvalidOperationException ex)
             {
                 return NotFound();
@@ -55,15 +60,17 @@ namespace thoughtless_eels.Controllers
         }
 
         [HttpPost]
+        //POST Method
         public IActionResult Post([FromBody]Computer computer)
         {
+            //check format of request, if bad, throw error
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            // add to database table
             _context.Computer.Add(computer);
-
+            // try to save save changes, catch duplicate errors
             try
             {
                 _context.SaveChanges();
@@ -79,22 +86,27 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
+            // return what was just added to the db
             return CreatedAtRoute("GetSingleComputer", new { id = computer.ComputerId }, computer);
         }
 
         [HttpPut("{id}")]
+        // PUT Method, takes id of item to be updated as a parameter
         public IActionResult Put(int id, [FromBody]Computer computer)
         {
+            //check format of request, if bad, throw error
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            // throw error if the id in JSON object doesn't match the id passed in the route
             if (id != computer.ComputerId)
             {
                 return BadRequest();
             }
+            // update table
             _context.Computer.Update(computer);
+            //try to save the updated changes throw error if the 
             try
             {
                 _context.SaveChanges();
@@ -115,6 +127,7 @@ namespace thoughtless_eels.Controllers
         }
 
         [HttpDelete("{id}")]
+        // DELETE Method, takes id of item to be deleted as a parameter
         public IActionResult Delete(int id)
         {
             Computer computer = _context.Computer.Single(c => c.ComputerId == id);
