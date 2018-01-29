@@ -82,7 +82,7 @@ namespace thoughtless_eels.Controllers {
         // POST
         [HttpPost ("{id}")]
         public IActionResult Post (int id, [FromBody] ProductOrder productOrder) {
-            // Check to see if that matches the model
+            // Check to see if the data matches the model
             if (!ModelState.IsValid) {
                 // return 404
                 return BadRequest (ModelState);
@@ -140,7 +140,6 @@ namespace thoughtless_eels.Controllers {
             // Check if the data matches the Model
             CurrentOrder currentOrder = _context.CurrentOrder.Single (c => c.CurrentOrderId == id);
             // Return 404 if not found
-
             if (currentOrder == null) {
                 return NotFound ();
             }
