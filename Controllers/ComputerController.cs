@@ -82,7 +82,7 @@ namespace thoughtless_eels.Controllers
             return CreatedAtRoute("GetSingleComputer", new { id = computer.ComputerId }, computer);
         }
 
-                [HttpPut("{id}")]
+        [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Computer computer)
         {
             if (!ModelState.IsValid)
