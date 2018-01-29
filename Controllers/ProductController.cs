@@ -9,7 +9,7 @@ using thoughtless_eels.Data;
 using thoughtless_eels.Models;
 
 namespace thoughtless_eels.Controllers {
-    // tell .net that this is a controller and how to name the url
+       // tell .net that this is a controller and how to name the url
     [Route ("api/[controller]")]
     // Define class
     public class ProductController : Controller {

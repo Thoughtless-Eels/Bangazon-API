@@ -70,7 +70,7 @@ namespace thoughtless_eels.Controllers
             {
                 return NotFound();
             }
-
+                        
             _context.EmployeeComputer.Add(employeeComputer);
             _context.SaveChanges();
             return CreatedAtRoute("GetSingleProduct", new { id = employeeComputer.EmployeeId}, employee);
