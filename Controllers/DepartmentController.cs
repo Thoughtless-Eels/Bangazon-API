@@ -39,8 +39,6 @@ namespace thoughtless_eels.Controllers
             return Ok(Department);
         }
 
-
-
         // Refrencing the model?
         // GET api/album/5
         [HttpGet("{id}", Name = "GetSingleDepartment")]

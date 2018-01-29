@@ -57,6 +57,7 @@ namespace thoughtless_eels.Controllers
             }
         }
 
+
         // POST api/values
         [HttpPost]
         public IActionResult Post([FromBody]Product product)
@@ -84,6 +85,27 @@ namespace thoughtless_eels.Controllers
                 }
             }
             return CreatedAtRoute("GetSingleProduct", new { id = product.ProductId }, product);
+        }
+
+        [HttpPost ("ProductOrder")]
+        public IActionResult Post([FromBody]ProductOrder ProductOrder)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Product product = _context.Product.Single(p => p.CustomerId == ProductOrder.ProductId);
+			CurrentOrder currentOrder = _context.CurrentOrder.Single(co => co.PaymentTypeId == ProductOrder.CurrentOrderId);
+
+            if (product == null || currentOrder == null)
+            {
+                return NotFound();
+            }
+
+            _context.ProductOrder.Add(ProductOrder);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetSingleProduct", new { id = ProductOrder.CurrentOrderId }, ProductOrder);
         }
 
         // PUT api/values/5
