@@ -121,6 +121,7 @@ namespace thoughtless_eels.Controllers
             {
                 _context.SaveChanges();
             }
+            
             catch (DbUpdateConcurrencyException)
             {
                 if (!CurrentOrderExists(id))
