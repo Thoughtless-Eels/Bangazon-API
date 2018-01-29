@@ -9,7 +9,7 @@ using thoughtless_eels.Data;
 using thoughtless_eels.Models;
 
 namespace thoughtless_eels.Controllers {
-       // tell .net that this is a controller and how to name the url
+    // tell .net that this is a controller and how to name the url
     [Route ("api/[controller]")]
     // Define class
     public class ProductController : Controller {
@@ -33,7 +33,6 @@ namespace thoughtless_eels.Controllers {
 
         // GET api/Product/5
         [HttpGet ("{id}", Name = "GetSingleProduct")]
-        // GET
         public IActionResult Get (int id) {
             // Check if data matches the Model 
             if (!ModelState.IsValid) {
@@ -81,7 +80,6 @@ namespace thoughtless_eels.Controllers {
             return CreatedAtRoute ("GetSingleProduct", new { id = product.ProductId }, product);
         }
 
-        
         // PUT api/values/5
         [HttpPut ("{id}")]
         public IActionResult Put (int id, [FromBody] Product product) {
