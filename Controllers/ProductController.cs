@@ -95,8 +95,8 @@ namespace thoughtless_eels.Controllers
                 return BadRequest(ModelState);
             }
 
-            Product product = _context.Product.Single(p => p.CustomerId == ProductOrder.ProductId);
-			CurrentOrder currentOrder = _context.CurrentOrder.Single(co => co.PaymentTypeId == ProductOrder.CurrentOrderId);
+            Product product = _context.Product.Single(p => p.ProductId == ProductOrder.ProductId);
+			CurrentOrder currentOrder = _context.CurrentOrder.Single(co => co.CurrentOrderId == ProductOrder.CurrentOrderId);
 
             if (product == null || currentOrder == null)
             {
