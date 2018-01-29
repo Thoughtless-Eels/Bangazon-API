@@ -87,27 +87,7 @@ namespace thoughtless_eels.Controllers
             return CreatedAtRoute("GetSingleProduct", new { id = product.ProductId }, product);
         }
 
-        [HttpPost ("ProductOrder")]
-        public IActionResult Post([FromBody]ProductOrder ProductOrder)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Product product = _context.Product.Single(p => p.ProductId == ProductOrder.ProductId);
-			CurrentOrder currentOrder = _context.CurrentOrder.Single(co => co.CurrentOrderId == ProductOrder.CurrentOrderId);
-
-            if (product == null || currentOrder == null)
-            {
-                return NotFound();
-            }
-
-            _context.ProductOrder.Add(ProductOrder);
-            _context.SaveChanges();
-            return CreatedAtRoute("GetSingleProduct", new { id = ProductOrder.CurrentOrderId }, ProductOrder);
-        }
-
+        
         // PUT api/values/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Product product)

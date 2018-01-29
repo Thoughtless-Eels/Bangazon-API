@@ -54,6 +54,50 @@ namespace thoughtless_eels.Controllers
             return CreatedAtRoute("GetSingleEmployee", new { id = employee.EmployeeId }, employee);
         }
 
+        [HttpPost ("{id}/assignComputer", Name="assignComputer")]
+        public IActionResult Post(int id, [FromBody]EmployeeComputer employeeComputer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+			Employee employee = _context.Employee.Single(e => e.EmployeeId == id);
+			Computer computer = _context.Computer.Single(c => c.ComputerId == employeeComputer.ComputerId);
+            
+
+            if (employee == null || computer == null)
+            {
+                return NotFound();
+            }
+
+            _context.EmployeeComputer.Add(employeeComputer);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetSingleProduct", new { id = employeeComputer.EmployeeId}, employee);
+        }
+
+        [HttpPost ("{id}/assignTraining")]
+        public IActionResult Post(int id, [FromBody]EmployeeTraining employeeTraining)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+			Employee employee = _context.Employee.Single(e => e.EmployeeId == id);
+			TrainingProgram trainingProgram = _context.TrainingProgram.Single(tp => tp.TrainingProgramId == employeeTraining.TrainingProgramId);
+            
+
+            if (employee == null || trainingProgram == null)
+            {
+                return NotFound();
+            }
+
+            _context.EmployeeTraining.Add(employeeTraining);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetSingleProduct", new { id = employeeTraining.EmployeeTrainingId}, employee);
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
