@@ -1,3 +1,4 @@
+// Model for the Customer Table:
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

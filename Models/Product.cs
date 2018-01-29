@@ -1,3 +1,4 @@
+// Model for the Product Table:
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
