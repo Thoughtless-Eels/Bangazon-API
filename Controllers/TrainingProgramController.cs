@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -119,13 +120,25 @@ namespace thoughtless_eels.Controllers
         {
             TrainingProgram trainingProgram = _context.TrainingProgram.Single(c => c.TrainingProgramId == id);
 
-            if (trainingProgram == null)
+            DateTime today = DateTime.Today;
+            DateTime startDate = trainingProgram.StartDate;
+            
+            if (trainingProgram != null)
             {
+                int results = DateTime.Compare(today, startDate);
+                if(results < 0) {
+                    _context.TrainingProgram.Remove(trainingProgram);
+                    _context.SaveChanges();
+                    return Ok(trainingProgram);
+
+                } else {
+                    return BadRequest("Training Program has already started. Cannot complete request");
+                }
+            } else {
                 return NotFound();
             }
-            _context.TrainingProgram.Remove(trainingProgram);
-            _context.SaveChanges();
-            return Ok(trainingProgram);
+
+
         }
 
         private bool TrainingProgramExists(int trainingProgramId)

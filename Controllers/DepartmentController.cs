@@ -130,24 +130,6 @@ namespace thoughtless_eels.Controllers
 
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            Department department = _context.Department.Single(g => g.DepartmentId == id);
-
-            if (department == null)
-            {
-                return NotFound();
-            }
-            _context.Department.Remove(department);
-            _context.SaveChanges();
-            return Ok(department);
-        }
-
-
-        // create the instance of the training program:
         private bool DepartmentExists(int departmentId)
         {
             return _context.Department.Any(g => g.DepartmentId == departmentId);

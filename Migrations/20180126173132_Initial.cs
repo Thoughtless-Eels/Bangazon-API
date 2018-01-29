@@ -76,7 +76,7 @@ namespace thoughtlesseels.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     EndDate = table.Column<string>(nullable: false),
                     MaxAttendees = table.Column<int>(nullable: false),
-                    StartDate = table.Column<string>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
                     TrainingProgramName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
