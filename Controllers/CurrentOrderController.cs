@@ -87,7 +87,7 @@ namespace thoughtless_eels.Controllers
         }
 
         [HttpPost ("{id}")]
-        public IActionResult Post(int id, [FromBody]ProductOrder ProductOrder)
+        public IActionResult Post(int id, [FromBody]ProductOrder productOrder)
         {
             if (!ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace thoughtless_eels.Controllers
             }
 
 			CurrentOrder currentOrder = _context.CurrentOrder.Single(co => co.CurrentOrderId == id);
-			Product product = _context.Product.Single(p => p.ProductId == ProductOrder.ProductId);
+			Product product = _context.Product.Single(p => p.ProductId == productOrder.ProductId);
             
 
             if (currentOrder == null || product == null)
@@ -103,9 +103,9 @@ namespace thoughtless_eels.Controllers
                 return NotFound();
             }
 
-            _context.ProductOrder.Add(ProductOrder);
+            _context.ProductOrder.Add(productOrder);
             _context.SaveChanges();
-            return CreatedAtRoute("GetSingleProduct", new { id = ProductOrder.CurrentOrderId });
+            return CreatedAtRoute("GetSingleProduct", new { id = productOrder.CurrentOrderId }, currentOrder);
         }
 
         [HttpPut("{id}")]
