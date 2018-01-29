@@ -8,7 +8,6 @@ namespace thoughtless_eels.Models
     public class ProductOrder
     {
         [Key]
-
         public int ProductOrderId { get; set; }
 
         [Required]
