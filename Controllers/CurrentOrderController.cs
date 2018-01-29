@@ -5,154 +5,151 @@ using Microsoft.EntityFrameworkCore;
 using thoughtless_eels.Data;
 using thoughtless_eels.Models;
 
-namespace thoughtless_eels.Controllers
-{
-    
-    [Route("api/[controller]")]
-    public class CurrentOrderController : Controller
-    {    
+namespace thoughtless_eels.Controllers {
+    // tell .net that this is a controller and how to name the url
+    [Route ("api/[controller]")]
+    // Define the class
+    public class CurrentOrderController : Controller {
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public CurrentOrderController(ApplicationDbContext ctx)
-        {
+        public CurrentOrderController (ApplicationDbContext ctx) {
             _context = ctx;
         }
-
+        // Request statement
         [HttpGet]
-        public IActionResult Get()
-        {
-            var currentOrder = _context.CurrentOrder.ToList();
-            if (currentOrder == null)
-            {
-                return NotFound();
+        // GET
+        public IActionResult Get () {
+            // set specific DB entry to current order
+            var currentOrder = _context.CurrentOrder.ToList ();
+            // check if null, return 404 if true
+            if (currentOrder == null) {
+                return NotFound ();
             }
-            return Ok(currentOrder);
+            return Ok (currentOrder);
         }
-
-        [HttpGet("{id}", Name = "GetSingleOrder")]
-        public IActionResult Get(int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+        // GET
+        [HttpGet ("{id}", Name = "GetSingleOrder")]
+        public IActionResult Get (int id) {
+            // Check if the data matches the Model
+            if (!ModelState.IsValid) {
+                // check if null, return 404 if true
+                return BadRequest (ModelState);
             }
+            // Check DB to ensure referenced tables exist
+            try {
+                CurrentOrder currentOrder = _context.CurrentOrder.Single (c => c.CurrentOrderId == id);
 
-            try
-            {
-                CurrentOrder currentOrder = _context.CurrentOrder.Single(c => c.CurrentOrderId == id);
-
-                if (currentOrder == null)
-                {
-                    return NotFound();
+                if (currentOrder == null) {
+                    // Return 404 if null
+                    return NotFound ();
                 }
 
-                return Ok(currentOrder);
-            }
-            catch (System.InvalidOperationException ex)
-            {
-                return NotFound();
+                return Ok (currentOrder);
+                // Catch statement return 404 for some reason
+            } catch (System.InvalidOperationException ex) {
+                return NotFound ();
             }
         }
 
+        // POST
         [HttpPost]
-        public IActionResult Post([FromBody]CurrentOrder currentOrder)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+        public IActionResult Post ([FromBody] CurrentOrder currentOrder) {
+            // check to see if data matches the Model
+            if (!ModelState.IsValid) {
+                return BadRequest (ModelState);
             }
-
-            _context.CurrentOrder.Add(currentOrder);
-
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (CurrentOrderExists(currentOrder.CurrentOrderId))
-                {
-                    return new StatusCodeResult(StatusCodes.Status409Conflict);
-                }
-                else
-                {
+            // add order to the table
+            _context.CurrentOrder.Add (currentOrder);
+            // Save the changes
+            try {
+                _context.SaveChanges ();
+                // Error statement
+            } catch (DbUpdateException) {
+                if (CurrentOrderExists (currentOrder.CurrentOrderId)) {
+                    return new StatusCodeResult (StatusCodes.Status409Conflict);
+                } else {
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleOrder", new { id = currentOrder.CurrentOrderId }, currentOrder);
+            // Return created order method
+            return CreatedAtRoute ("GetSingleOrder", new { id = currentOrder.CurrentOrderId }, currentOrder);
         }
 
+        // POST
         [HttpPost ("{id}")]
-        public IActionResult Post(int id, [FromBody]ProductOrder productOrder)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+        public IActionResult Post (int id, [FromBody] ProductOrder productOrder) {
+            // Check to see if that matches the model
+            if (!ModelState.IsValid) {
+                // return 404
+                return BadRequest (ModelState);
             }
+            // Check DB to ensure referenced tables exist
+            CurrentOrder currentOrder = _context.CurrentOrder.Single (co => co.CurrentOrderId == id);
+            Product Product = _context.Product.Single (p => p.ProductId == productOrder.ProductId);
 
-			CurrentOrder currentOrder = _context.CurrentOrder.Single(co => co.CurrentOrderId == id);
-			Product product = _context.Product.Single(p => p.ProductId == productOrder.ProductId);
-            
-
-            if (currentOrder == null || product == null)
-            {
-                return NotFound();
+            // Return 404 if null
+            if (currentOrder == null || Product == null) {
+                return NotFound ();
             }
-
-            _context.ProductOrder.Add(productOrder);
-            _context.SaveChanges();
-            return CreatedAtRoute("GetSingleProduct", new { id = productOrder.CurrentOrderId }, currentOrder);
+            // Add order to the table
+            _context.ProductOrder.Add (productOrder);
+            // Save the changes
+            _context.SaveChanges ();
+            // Create current order method
+            return CreatedAtRoute ("GetSingleProduct", new { id = productOrder.CurrentOrderId });
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]CurrentOrder currentOrder)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+        // PUT
+        [HttpPut ("{id}")]
+        public IActionResult Put (int id, [FromBody] CurrentOrder currentOrder) {
+            // Check to see if the data matches the model
+            if (!ModelState.IsValid) {
+                // return 404
+                return BadRequest (ModelState);
             }
-
-            if (id != currentOrder.CurrentOrderId)
-            {
-                return BadRequest();
+            // Check for id match, if true, update the table
+            if (id != currentOrder.CurrentOrderId) {
+                // return 404
+                return BadRequest ();
             }
-            _context.CurrentOrder.Update(currentOrder);
-            try
-            {
-                _context.SaveChanges();
+            // update table method
+            _context.CurrentOrder.Update (currentOrder);
+            // save changes
+            try {
+                _context.SaveChanges ();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CurrentOrderExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
+            // Error message for something .net
+            catch (DbUpdateConcurrencyException) {
+                if (!CurrentOrderExists (id)) {
+                    return NotFound ();
+                } else {
                     throw;
                 }
             }
 
-            return new StatusCodeResult(StatusCodes.Status204NoContent);
+            return new StatusCodeResult (StatusCodes.Status204NoContent);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            CurrentOrder currentOrder = _context.CurrentOrder.Single(c => c.CurrentOrderId == id);
+        // DELETE
+        [HttpDelete ("{id}")]
+        public IActionResult Delete (int id) {
+            // Check if the data matches the Model
+            CurrentOrder currentOrder = _context.CurrentOrder.Single (c => c.CurrentOrderId == id);
+            // Return 404 if not found
 
-            if (currentOrder == null)
-            {
-                return NotFound();
+            if (currentOrder == null) {
+                return NotFound ();
             }
-            _context.CurrentOrder.Remove(currentOrder);
-            _context.SaveChanges();
-            return Ok(currentOrder);
+            // Remove method
+            _context.CurrentOrder.Remove (currentOrder);
+            // Save table after removal
+            _context.SaveChanges ();
+            return Ok (currentOrder);
         }
 
-        private bool CurrentOrderExists(int currentOrderId)
-        {
-            return _context.CurrentOrder.Any(c => c.CurrentOrderId == currentOrderId);
+        // Simple Boolean check to see if the Order even exists.
+        private bool CurrentOrderExists (int currentOrderId) {
+            return _context.CurrentOrder.Any (c => c.CurrentOrderId == currentOrderId);
         }
     }
 }
