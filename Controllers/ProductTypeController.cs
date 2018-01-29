@@ -9,134 +9,127 @@ using thoughtless_eels.Data;
 using thoughtless_eels.Models;
 
 namespace thoughtless_eels.Controllers
+// tell .net that this is a controller and how to name the url
 {
-    [Route("api/[controller]")]
-    public class ProductTypeController : Controller
-    {
+    [Route ("api/[controller]")]
+    // Define the class
+    public class ProductTypeController : Controller {
         private ApplicationDbContext _context;
         // Constructor method to create an instance of context to communicate with our database.
-        public ProductTypeController(ApplicationDbContext ctx)
-        {
+        public ProductTypeController (ApplicationDbContext ctx) {
             _context = ctx;
         }
-
+        // Request Statement
         [HttpGet]
-        public IActionResult Get()
-        {
-            var productTypes = _context.ProductType.ToList();
-            if (productTypes == null)
-            {
-                return NotFound();
+        // GET
+        public IActionResult Get () {
+            // set specific DB entry to Product Type
+            var productTypes = _context.ProductType.ToList ();
+            // check if null, return 404 if true
+            if (productTypes == null) {
+                return NotFound ();
             }
-            return Ok(productTypes);
+            return Ok (productTypes);
         }
 
         // GET api/productType/5
-        [HttpGet("{id}", Name = "GetSingleProductType")]
-        public IActionResult Get(int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+        [HttpGet ("{id}", Name = "GetSingleProductType")]
+        public IActionResult Get (int id) {
+            // Check if the data matches the model
+            if (!ModelState.IsValid) {
+                // check if null, return 404 if true
+                return BadRequest (ModelState);
             }
+            // Check DB to ensure referenced tables exist
+            try {
+                ProductType productType = _context.ProductType.Single (g => g.ProductTypeId == id);
 
-            try
-            {
-                ProductType productType = _context.ProductType.Single(g => g.ProductTypeId == id);
-
-                if (productType == null)
-                {
-                    return NotFound();
+                if (productType == null) {
+                    // return 404 if null
+                    return NotFound ();
                 }
 
-                return Ok(productType);
-            }
-            catch (System.InvalidOperationException ex)
-            {
-                return NotFound();
+                return Ok (productType);
+                // catch statement return 404 for some reason
+            } catch (System.InvalidOperationException ex) {
+                return NotFound ();
             }
         }
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]ProductType productType)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+        public IActionResult Post ([FromBody] ProductType productType) {
+            // check to see if data matches the model
+            if (!ModelState.IsValid) {
+                return BadRequest (ModelState);
             }
-
-            _context.ProductType.Add(productType);
-
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (ProductTypeExists(productType.ProductTypeId))
-                {
-                    return new StatusCodeResult(StatusCodes.Status409Conflict);
-                }
-                else
-                {
+            // add product type to the table
+            _context.ProductType.Add (productType);
+            // save the changes
+            try {
+                _context.SaveChanges ();
+                //error statement
+            } catch (DbUpdateException) {
+                if (ProductTypeExists (productType.ProductTypeId)) {
+                    return new StatusCodeResult (StatusCodes.Status409Conflict);
+                } else {
                     throw;
                 }
             }
-            return CreatedAtRoute("GetSingleProductType", new { id = productType.ProductTypeId }, productType);
+            // Return Created product type method
+            return CreatedAtRoute ("GetSingleProductType", new { id = productType.ProductTypeId }, productType);
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]ProductType productType)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+        [HttpPut ("{id}")]
+        public IActionResult Put (int id, [FromBody] ProductType productType) {
+            // check to see if the data matches themodel
+            if (!ModelState.IsValid) {
+                // return 404 if error
+                return BadRequest (ModelState);
             }
-
-            if (id != productType.ProductTypeId)
-            {
-                return BadRequest();
+            // Check for id match, if true, update the table
+            if (id != productType.ProductTypeId) {
+                //return 404 if error
+                return BadRequest ();
             }
-            _context.ProductType.Update(productType);
-            try
-            {
-                _context.SaveChanges();
+            // update table method
+            _context.ProductType.Update (productType);
+            // save the changes
+            try {
+                _context.SaveChanges ();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductTypeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
+            // Error message for something .net
+            catch (DbUpdateConcurrencyException) {
+                if (!ProductTypeExists (id)) {
+                    return NotFound ();
+                } else {
                     throw;
                 }
             }
 
-            return new StatusCodeResult(StatusCodes.Status204NoContent);
+            return new StatusCodeResult (StatusCodes.Status204NoContent);
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            ProductType productType = _context.ProductType.Single(g => g.ProductTypeId == id);
-
-            if (productType == null)
-            {
-                return NotFound();
+        [HttpDelete ("{id}")]
+        public IActionResult Delete (int id) {
+            // Check if the data matches the Model
+            ProductType productType = _context.ProductType.Single (g => g.ProductTypeId == id);
+                        // Return 404 if not found
+            if (productType == null) {
+                return NotFound ();
             }
-            _context.ProductType.Remove(productType);
-            _context.SaveChanges();
-            return Ok(productType);
+            // Remove method
+            _context.ProductType.Remove (productType);
+            // Save table after removal
+            _context.SaveChanges ();
+            return Ok (productType);
         }
 
-        private bool ProductTypeExists(int productTypeId)
-        {
-            return _context.ProductType.Any(g => g.ProductTypeId == productTypeId);
+        // Simple Boolean check to see if the productType even exists.
+        private bool ProductTypeExists (int productTypeId) {
+            return _context.ProductType.Any (g => g.ProductTypeId == productTypeId);
         }
 
     }
