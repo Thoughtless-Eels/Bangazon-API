@@ -11,7 +11,8 @@ Working with the C# language and Asp.Net as our web application framework, the T
 
 How to Install BangazonAPI:
 The Thoughtless Eels database is going to be hosted on your local computer for now. 
-Steps:
+
+## Steps:
 Fork and clone our repository on to your local machine
 In Your Terminal...
 - Run dotnet restore
@@ -30,12 +31,10 @@ Asp.Net -  web application framework
 PostMan - a toolchain for the API developers who use our site
 SQLite - the database management system we used
 
-#Authors:
+# Authors:
 Project Manager: Hannah Hall
 Contributers:
 Garrett Ward, John Dulaney, Lissa Goforth, & Courtney Seward
 
-#License:
-This project is licensed under the MIT License - see the LICENSE.md file for details
-
-
+# License:
+This project is licensed under the MIT License - see the LICENSE.md file for detail.
