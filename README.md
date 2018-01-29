@@ -17,7 +17,7 @@ These instructions will get you a copy of the project up and running on your loc
 Prerequisites
 What things you need to install the software and how to install them
 
-Give examples
+Give examples:
 Installing
 A step by step series of examples that tell you have to get a development env running
 
@@ -44,8 +44,8 @@ Deployment
 Add additional notes about how to deploy this on a live system
 
 Built With:
-C# - language we wrote in
-Asp.Net - our web application framework 
+C# - language used
+Asp.Net -  web application framework 
 PostMan - a toolchain for the API developers who use our site
 SQLite - the database management system we used
 
