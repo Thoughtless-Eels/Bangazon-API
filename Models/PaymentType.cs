@@ -6,20 +6,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace thoughtless_eels.Models
 {
+     // Create the PaymentType Table: 
     public class PaymentType
     {
         // Establish the Primary Key:
         [Key]
-        public int PaymentTypeId {get; set;}
+        public int PaymentTypeId { get; set; }
 
+        // Required Property:
         [Required]
-        public string Name {get; set;}
+        public string Name { get; set; }
 
+        // Required Property:
         [Required]
-        public int AccountNumber {get; set;}
+        public int AccountNumber { get; set; }
 
+        // First Foreign Key:
         [Required]
-        public int CustomerId {get; set;}
-        public Customer Customer {get; set;}         
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
     }
 }

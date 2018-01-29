@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace thoughtless_eels.Models
 {
+     // Create the Employee/Computer Table: 
     public class EmployeeComputer
     {
         // Establish the Primary Key

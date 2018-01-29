@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace thoughtless_eels.Models
 {
+     // Create the Employee/Training Table: 
     public class EmployeeTraining
     {
         // Establish the Primary Key:
@@ -13,12 +14,14 @@ namespace thoughtless_eels.Models
 
         public int EmployeeTrainingId { get; set; }
 
+        // Required Property:
         [Required]
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
 
+        // First Foreign Key:
         [Required]
-        public int TrainingProgramId {get; set;}
-        public TrainingProgram TrainingProgram {get; set;}
+        public int TrainingProgramId { get; set; }
+        public TrainingProgram TrainingProgram { get; set; }
     }
 }
