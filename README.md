@@ -41,6 +41,228 @@ dotnet run
 ```
 At this point your database tables will be created but there will be no data in the tables. Using your preferred method, seed the database with info, starting with tables that have NO FOREIGN KEYS.
 
+#Using the API
+For now, all calls to the API will be made from (http://localhost:5000) as the domain.
+
+```
+Example:
+You can get a list of all the customers by making a GET call to: (http://localhost:5000/api/customer)
+```
+
+## Steps for Testing the API
+Open Postman
+Open SQL Browser. Use this command in the terminal: `open bangazon.db`
+
+## Department
+
+**GET Department** 
+You can access a list of all Departments by running a Get call to (http://localhost:5000/api/Department)
+
+**GET Single Department** 
+You can get the information on a single Department by running a Get call to (http://localhost:5000/api/Department/{DepartmentID}).
+
+> Note: You need to have a Departments unique ID number to get the correct information for a single Department.
+
+**PUT** You can update the info on a specific Department by running a Put call to (http://localhost:5000/api/Department/{DepartmentID}).
+
+> You must Put the entire changed object, which will include the DepartmentID, Name, Budget.
+	
+```
+	Example:
+		{		
+			"DepartmentId":"1",
+			"Name":"Sales",
+			"Budget":"$50 Mill"
+		}
+```
+**POST** You can post a new Department by running a Post call to (http://localhost:5000/api/Department)
+```
+	Example:
+		{		
+			"DepartmentId":"1",
+			"Name":"Sales",
+			"Budget":"$50 Mill",
+		}
+```
+
+## Product Resource
+
+In the Product Resource, you will be able to **GET**, **POST**, **PUT**, **DELETE** product data in the database.
+
+**GET** will give access to the entire list of products
+* Open Postman 
+* Select GET
+* URL: http://localhost:5000/api/product
+
+**GET** will give access to a single product by ID
+* Open Postman 
+* Select GET
+* URL: http://localhost:5000/api/product/{productID}
+
+**POST** will allow you to add a product
+* Open Postman 
+* Select POST
+* URL: http://localhost:5000/api/product
+
+```
+Example:
+	{ 
+	  "name": "book",
+	  "price": 2.00,
+	  "quantity": 1,
+	  "Description": "C# 7.0 in a Nutshell"
+	  "CustomerId": 3,
+	  "ProductTypeId": 8
+	}
+```
+
+**PUT** will allow you to update a specific product by ID
+* Open Postman 
+* Select PUT
+* URL: http://localhost:5000/api/product/{productID}
+
+```
+	Example for using PUT:
+		{ 
+	    "name": "book",
+	    "price": 2.00,
+	    "quantity": 1,
+	    "Description": "C# 7.0 in a Nutshell"
+	     "CustomerId": 3,
+	    "ProductTypeId": 8
+		}
+```
+
+**DELETE** will allow you to delete a specific product by ID
+* Open Postman 
+* Select DELETE
+* URL: http://localhost:5000/api/product/{productID}
+
+
+ ## Computers
+**GET Computers** 
+You can access a list of all computers by running a Get call to (http://localhost:5000/api/computer)
+
+**GET Single Computer** 
+You can get the information on a single computer by running a Get call to (http://localhost:5000/api/computer/{computerID}).
+> Note: You need to have a computers unique ID number to get the correct information for a single computer.
+
+**PUT** You can update the info on a specific computer by running a Put call to (http://localhost:5000/api/computer/{computerID}).
+```
+   Example:
+       {      
+        “ComputerId”:“1",
+        “Name”:“Mac Pro Computer”,
+        “PurchasedOn”:“January 12, 2015",
+        “DecomissionedOn”:“January 25, 2016",
+        “Malfunction”:“0",
+        “Available “:”1"
+       }
+```
+**POST** You can post a new computer by running a Post call to (http://localhost:5000/api/computer)
+```
+   Example:
+       {      
+        “ComputerId”:“1",
+        “Name”:“Mac Pro Computer”,
+        “PurchasedOn”:“January 12, 2015",
+        “DecomissionedOn”:“January 25, 2016",
+        “Malfunction”:“0",
+        “Available “:”1"
+       }
+```
+
+## Customers
+**GET**
+You can access a list of all customers by running a Get call to (http://localhost:5000/api/customer)
+
+**GET** a single:
+You can get the information on a single customer by running a Get call to (http://localhost:5000/api/customer/{customerID}).
+
+**PUT**
+You can update the info on a specific customer by running a Put call to (http://localhost:5000/api/customer/{customerID}).
+
+**POST**
+You can post a new customer by running a Post call to (http://localhost:5000/api/customer)
+
+        ```
+        Example:
+        {        
+        "FirstName":"Kevin",
+        "LastName":"Miller",
+        "CreatedOn":"07/02/2017",
+        "DaysInactive": 0
+        }
+        ```
+
+## Training Program
+**GET TrainingProgram** 
+You can access a list of all training programs by running a Get call to (http://localhost:5000/api/TrainingProgram)
+
+**GET Single Training Program** 
+You can get the information on a single training program by running a Get call to (http://localhost:5000/api/TrainingProgram/{TrainingProgramId}).
+> Note: You need to have the training program id number to get the correct information for a single training program.
+
+**PUT** You can update the info on a specific training program by running a Put call to (http://localhost:5000/api/TrainingProgram/{TrainingProgramId}).
+> You must pass in the entire changed object, which will include the training program name, start date, end date and max attendees. 
+    
+```
+    Example:
+        {       
+            “TrainingProgramName”: ”C# Training”,
+            “StartDate”:”yyyy-mm-dd”,
+            “EndDate”:”yyyy-mm-dd”,
+            “MaxAttendees”: 25
+        }
+```
+**POST** You can post a new training program by running a Post call to (http://localhost:5000/api/TrainingProgram)
+```
+    Example:
+        {       
+            “TrainingProgramName”: ”C# Training”,
+            “StartDate”:”yyyy-mm-dd”,
+            “EndDate”:”yyyy-mm-dd”,
+            “MaxAttendees”: 25
+        }
+```
+**DELETE** 
+>Note: A training program should only be able to be deleted if the start date is in the future. If the training program has already begun, an error should be thrown if the delete method is attempted.
+You can delete a single training program by running a Get call to (http://localhost:5000/api/TrainingProgram/{TrainingProgramId})
+
+
+## Employees
+**GET Employees** 
+You can access a list of all employees by running a Get call to (http://localhost:5000/api/employee)
+
+**GET Single Employee** 
+You can get the information on a single employee by running a Get call to (http://localhost:5000/api/employee/{employeeID}).
+> Note: You need to have an employee's unique ID number to get the correct information for a single employee.
+
+**PUT** You can update the info on a specific employee by running a Put call to (http://localhost:5000/api/employee/{employeeID}).
+> You must Put the entire changed object, which will include the employeeID, Name, Supervisor,DepartmentId
+    
+
+    Example:
+        {       
+            "EmployeeId":"1",
+            "Name":"Jacob Lee",
+            "Supervisor":"Roger Smith",
+            "DepartmentId":"2",
+           
+        }
+
+**POST** You can post a new employee by running a Post call to (http://localhost:5000/api/employee)
+
+    Example:
+        {       
+                "EmployeeId":"1",
+               "Name":"Jacob Lee",
+               "Supervisor":"Roger Smith",
+               "DepartmentId":"2",
+        }
+
+
+
 # ERD
 
 ![ERD](https://i.imgur.com/ShSf7Fg.png)
