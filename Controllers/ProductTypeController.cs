@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using thoughtless_eels.Models;
 namespace thoughtless_eels.Controllers
 // tell .net that this is a controller and how to name the url
 {
+    [EnableCors("AllowSpecificOrigin")]
     [Route ("api/[controller]")]
     // Define the class
     public class ProductTypeController : Controller {
