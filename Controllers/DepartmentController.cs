@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace thoughtless_eels.Controllers
 {
 
     // do I need to change the router name to something more specific?
+    [EnableCors("AllowSpecificOrigin")]
     [Route("api/[controller]")]
     public class DepartmentController : Controller
     {
