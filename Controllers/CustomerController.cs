@@ -53,7 +53,7 @@ namespace thoughtless_eels.Controllers {
             return CreatedAtRoute ("GetSingleCustomer", new { id = customer.CustomerId }, customer);
         }
 
-        [HttpGet]
+        [HttpGet ("getCustomers")]
         public IActionResult Get () {
             var customers = _context.Customer.ToList ();
             if (customers == null) {
@@ -106,8 +106,9 @@ namespace thoughtless_eels.Controllers {
         }
 
         [HttpGet]
+        //{flag:bool}????
         public IActionResult Get (bool? ActiveOrder) {
-            
+
           if (ActiveOrder == false) {
                 var customer = _context.Customer.Where (c =>
                     !_context.CurrentOrder.Any (o => o.CustomerId == c.CustomerId));
