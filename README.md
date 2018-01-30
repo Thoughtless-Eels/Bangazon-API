@@ -2,6 +2,7 @@
 # The Thoughtless Eels
 
 Overall Summary:
+
 Working with the C# language and Asp.Net as our web application framework, the Thoughtless Eels are working to create a backend system that will allow other Developers the ability to add, search and at times delete the information from our company, Bangazon. These developers will have access to a myriad of tables from: Employees, Training Programs, Computers, Products, Customers and these Customer's Active Orders. You will make your requests through PostMan and will check the Database (SQLite) for any new updates.
 
 # Steps to install the Bangazon API
@@ -41,8 +42,8 @@ dotnet run
 ```
 At this point your database tables will be created but there will be no data in the tables. Using your preferred method, seed the database with info, starting with tables that have NO FOREIGN KEYS.
 
+
 ## Using the API
-For now, all calls to the API will be made from (http://localhost:5000) as the domain.
 
 ```
 Example:
@@ -74,6 +75,7 @@ You can get the information on a single Department by running a Get call to (htt
         "Name":"Sales",
         "Budget":"$50 Mill"
         }
+
 ```
 **POST** You can post a new Department by running a Post call to (http://localhost:5000/api/Department)
 ```
@@ -149,6 +151,7 @@ You can access a list of all computers by running a Get call to (http://localhos
 You can get the information on a single computer by running a Get call to (http://localhost:5000/api/computer/{computerID}).
 > Note: You need to have a computers unique ID number to get the correct information for a single computer.
 
+
 **PUT** You can update the info on a specific computer by running a Put call to (http://localhost:5000/api/computer/{computerID}).
 ```
    Example:
@@ -184,6 +187,7 @@ You can get the information on a single customer by running a Get call to (http:
 
 **PUT**
 You can update the info on a specific customer by running a Put call to (http://localhost:5000/api/customer/{customerID}).
+
 ```
      Example:
         {
@@ -194,6 +198,7 @@ You can update the info on a specific customer by running a Put call to (http://
         "DaysInactive": 0
         }
 ```
+
 
 **POST**
 You can post a new customer by running a Post call to (http://localhost:5000/api/customer)
@@ -244,7 +249,6 @@ You can get the information on a single training program by running a Get call t
 >Note: A training program should only be able to be deleted if the start date is in the future. If the training program has already begun, an error should be thrown if the delete method is attempted.
 You can delete a single training program by running a Delete call to (http://localhost:5000/api/TrainingProgram/{TrainingProgramId})
 
-
 ## Employees
 
 **GET Employees** 
@@ -260,11 +264,11 @@ You can get the information on a single employee by running a Get call to (http:
 
     Example:
         {       
+
         "EmployeeId": 1,
         "Name":"Jacob Lee",
         "Supervisor":"Roger Smith",
         "DepartmentId": 2,
-
         }
 
 **POST** You can post a new employee by running a Post call to (http://localhost:5000/api/employee)
