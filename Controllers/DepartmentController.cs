@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ using thoughtless_eels.Models;
 // grab the correct namespace:
 namespace thoughtless_eels.Controllers
 {
+
+    [EnableCors("AllowSpecificOrigin")]
     // tell .net that this is a controller and how to name the url
     [Route("api/[controller]")]
     // Define the class
