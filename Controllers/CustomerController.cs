@@ -133,5 +133,42 @@ namespace thoughtless_eels.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
+        // [HttpGet]
+        // public IActionResult Get(bool? active)
+        // {
+        //     if (active != null) {
+                
+        //         if (active == true) {
+        //             var customer = _context.Customer.Where(c => 
+        //                 _context.Order.Any(o => o.CustomerId == c.CustomerId));
+
+        //             return Ok(customer);
+
+        //         } else if (active == false)  {
+        //             var customer = _context.Customer.Where(c => 
+        //                 !_context.Order.Any(o => o.CustomerId == c.CustomerId));
+
+        //             return Ok(customer);
+
+        //         } else {
+        //             return NotFound();
+        //         }
+
+        //     } else {
+
+        //         var customer = _context.Customer.ToList();
+
+        //         if (customer == null)
+        //         {
+        //             return NotFound();
+        //         }
+                
+        //         return Ok(customer);
+        //     }
+
+
+        // }
     }
 }
+
+
