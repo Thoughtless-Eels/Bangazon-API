@@ -41,7 +41,7 @@ dotnet run
 ```
 At this point your database tables will be created but there will be no data in the tables. Using your preferred method, seed the database with info, starting with tables that have NO FOREIGN KEYS.
 
-#Using the API
+## Using the API
 For now, all calls to the API will be made from (http://localhost:5000) as the domain.
 
 ```
@@ -242,7 +242,7 @@ You can get the information on a single training program by running a Get call t
 ```
 **DELETE** 
 >Note: A training program should only be able to be deleted if the start date is in the future. If the training program has already begun, an error should be thrown if the delete method is attempted.
-You can delete a single training program by running a Get call to (http://localhost:5000/api/TrainingProgram/{TrainingProgramId})
+You can delete a single training program by running a Delete call to (http://localhost:5000/api/TrainingProgram/{TrainingProgramId})
 
 
 ## Employees
