@@ -70,7 +70,7 @@ You can get the information on a single Department by running a Get call to (htt
 ```
 	Example:
         {		
-        "DepartmentId":"1",
+        "DepartmentId": 1,
         "Name":"Sales",
         "Budget":"$50 Mill"
         }
@@ -79,15 +79,14 @@ You can get the information on a single Department by running a Get call to (htt
 ```
 	Example:
         {		
-        "DepartmentId":"1",
         "Name":"Sales",
         "Budget":"$50 Mill",
         }
 ```
 
-## Product Resource
+## Product
 
-In the Product Resource, you will be able to **GET**, **POST**, **PUT**, **DELETE** product data in the database.
+In the Product, you will be able to **GET**, **POST**, **PUT**, **DELETE** product data in the database.
 
 **GET** will give access to the entire list of products
 * Open Postman 
@@ -107,6 +106,7 @@ In the Product Resource, you will be able to **GET**, **POST**, **PUT**, **DELET
 ```
 Example:
         { 
+	    "ProductId": 1,
         "name": "book",
         "price": 2.00,
         "quantity": 1,
@@ -124,11 +124,12 @@ Example:
 ```
 	Example for using PUT:
 		{ 
+	    "ProductId": 1,
 	    "name": "book",
 	    "price": 2.00,
 	    "quantity": 1,
 	    "Description": "C# 7.0 in a Nutshell"
-	     "CustomerId": 3,
+	    "CustomerId": 3,
 	    "ProductTypeId": 8
 		}
 ```
@@ -156,8 +157,8 @@ You can get the information on a single computer by running a Get call to (http:
         “Name”:“Mac Pro Computer”,
         “PurchasedOn”:“yyyy-mm-dd",
         “DecomissionedOn”:“yyyy-mm-dd",
-        “Malfunction”:“0",
-        “Available “:”1"
+        “Malfunction”: 0,
+        “Available “: 1
        }
 ```
 **POST** You can post a new computer by running a Post call to (http://localhost:5000/api/computer)
@@ -168,8 +169,8 @@ You can get the information on a single computer by running a Get call to (http:
         “Name”:“Mac Pro Computer”,
         “PurchasedOn”:“yyyy-mm-dd",
         “DecomissionedOn”:“yyyy-mm-dd",
-        “Malfunction”:“0",
-        “Available “:”1"
+        “Malfunction”: 0,
+        “Available “: 1
        }
 ```
 
@@ -183,11 +184,21 @@ You can get the information on a single customer by running a Get call to (http:
 
 **PUT**
 You can update the info on a specific customer by running a Put call to (http://localhost:5000/api/customer/{customerID}).
+```
+     Example:
+        {
+        "CustomerId": 1,        
+        "FirstName":"Kevin",
+        "LastName":"Miller",
+        "CreatedOn":"yyyy-mm-dd",
+        "DaysInactive": 0
+        }
+```
 
 **POST**
 You can post a new customer by running a Post call to (http://localhost:5000/api/customer)
 
-        ```
+```
      Example:
         {        
         "FirstName":"Kevin",
@@ -195,7 +206,7 @@ You can post a new customer by running a Post call to (http://localhost:5000/api
         "CreatedOn":"yyyy-mm-dd",
         "DaysInactive": 0
         }
-        ```
+```
 
 ## Training Program
 
@@ -212,6 +223,7 @@ You can get the information on a single training program by running a Get call t
 ```
     Example:
         {       
+        "TrainingProgramId": 2,
         “TrainingProgramName”: ”C# Training”,
         “StartDate”:”yyyy-mm-dd”,
         “EndDate”:”yyyy-mm-dd”,
@@ -248,10 +260,10 @@ You can get the information on a single employee by running a Get call to (http:
 
     Example:
         {       
-        "EmployeeId":"1",
+        "EmployeeId": 1,
         "Name":"Jacob Lee",
         "Supervisor":"Roger Smith",
-        "DepartmentId":"2",
+        "DepartmentId": 2,
 
         }
 
@@ -259,10 +271,9 @@ You can get the information on a single employee by running a Get call to (http:
 
     Example:
         {       
-        "EmployeeId":"1",
         "Name":"Jacob Lee",
         "Supervisor":"Roger Smith",
-        "DepartmentId":"2",
+        "DepartmentId": 2,
         }
 
 
