@@ -2,7 +2,7 @@
 # The Thoughtless Eels
 
 Overall Summary:
-Working with the C# language and Asp.Net as our web application framework, the Thoughtless Eels are working to create a backend system that will allow other Developers the ability to add, search and at times delete the information from our company, Bangazon. These developers will have accesss to a myriad of tables from: Employeess, Training Programs, Computers, Products, Customers and these Customer's Active Orders. You will make your requests through PostMan and will check the Database (SQLite) for any new updates.
+Working with the C# language and Asp.Net as our web application framework, the Thoughtless Eels are working to create a backend system that will allow other Developers the ability to add, search and at times delete the information from our company, Bangazon. These developers will have access to a myriad of tables from: Employees, Training Programs, Computers, Products, Customers and these Customer's Active Orders. You will make your requests through PostMan and will check the Database (SQLite) for any new updates.
 
 # Steps to install the Bangazon API
 There are a few programs and commands that need to run before we can jump in to the application. First we need to install these core technologies:
@@ -69,20 +69,20 @@ You can get the information on a single Department by running a Get call to (htt
 	
 ```
 	Example:
-		{		
-			"DepartmentId":"1",
-			"Name":"Sales",
-			"Budget":"$50 Mill"
-		}
+        {		
+        "DepartmentId":"1",
+        "Name":"Sales",
+        "Budget":"$50 Mill"
+        }
 ```
 **POST** You can post a new Department by running a Post call to (http://localhost:5000/api/Department)
 ```
 	Example:
-		{		
-			"DepartmentId":"1",
-			"Name":"Sales",
-			"Budget":"$50 Mill",
-		}
+        {		
+        "DepartmentId":"1",
+        "Name":"Sales",
+        "Budget":"$50 Mill",
+        }
 ```
 
 ## Product Resource
@@ -106,14 +106,14 @@ In the Product Resource, you will be able to **GET**, **POST**, **PUT**, **DELET
 
 ```
 Example:
-	{ 
-	  "name": "book",
-	  "price": 2.00,
-	  "quantity": 1,
-	  "Description": "C# 7.0 in a Nutshell"
-	  "CustomerId": 3,
-	  "ProductTypeId": 8
-	}
+        { 
+        "name": "book",
+        "price": 2.00,
+        "quantity": 1,
+        "Description": "C# 7.0 in a Nutshell"
+        "CustomerId": 3,
+        "ProductTypeId": 8
+        }
 ```
 
 **PUT** will allow you to update a specific product by ID
@@ -140,6 +140,7 @@ Example:
 
 
  ## Computers
+
 **GET Computers** 
 You can access a list of all computers by running a Get call to (http://localhost:5000/api/computer)
 
@@ -153,8 +154,8 @@ You can get the information on a single computer by running a Get call to (http:
        {      
         “ComputerId”:“1",
         “Name”:“Mac Pro Computer”,
-        “PurchasedOn”:“January 12, 2015",
-        “DecomissionedOn”:“January 25, 2016",
+        “PurchasedOn”:“yyyy-mm-dd",
+        “DecomissionedOn”:“yyyy-mm-dd",
         “Malfunction”:“0",
         “Available “:”1"
        }
@@ -165,14 +166,15 @@ You can get the information on a single computer by running a Get call to (http:
        {      
         “ComputerId”:“1",
         “Name”:“Mac Pro Computer”,
-        “PurchasedOn”:“January 12, 2015",
-        “DecomissionedOn”:“January 25, 2016",
+        “PurchasedOn”:“yyyy-mm-dd",
+        “DecomissionedOn”:“yyyy-mm-dd",
         “Malfunction”:“0",
         “Available “:”1"
        }
 ```
 
 ## Customers
+
 **GET**
 You can access a list of all customers by running a Get call to (http://localhost:5000/api/customer)
 
@@ -186,16 +188,17 @@ You can update the info on a specific customer by running a Put call to (http://
 You can post a new customer by running a Post call to (http://localhost:5000/api/customer)
 
         ```
-        Example:
+     Example:
         {        
         "FirstName":"Kevin",
         "LastName":"Miller",
-        "CreatedOn":"07/02/2017",
+        "CreatedOn":"yyyy-mm-dd",
         "DaysInactive": 0
         }
         ```
 
 ## Training Program
+
 **GET TrainingProgram** 
 You can access a list of all training programs by running a Get call to (http://localhost:5000/api/TrainingProgram)
 
@@ -209,20 +212,20 @@ You can get the information on a single training program by running a Get call t
 ```
     Example:
         {       
-            “TrainingProgramName”: ”C# Training”,
-            “StartDate”:”yyyy-mm-dd”,
-            “EndDate”:”yyyy-mm-dd”,
-            “MaxAttendees”: 25
+        “TrainingProgramName”: ”C# Training”,
+        “StartDate”:”yyyy-mm-dd”,
+        “EndDate”:”yyyy-mm-dd”,
+        “MaxAttendees”: 25
         }
 ```
 **POST** You can post a new training program by running a Post call to (http://localhost:5000/api/TrainingProgram)
 ```
     Example:
         {       
-            “TrainingProgramName”: ”C# Training”,
-            “StartDate”:”yyyy-mm-dd”,
-            “EndDate”:”yyyy-mm-dd”,
-            “MaxAttendees”: 25
+        “TrainingProgramName”: ”C# Training”,
+        “StartDate”:”yyyy-mm-dd”,
+        “EndDate”:”yyyy-mm-dd”,
+        “MaxAttendees”: 25
         }
 ```
 **DELETE** 
@@ -231,6 +234,7 @@ You can delete a single training program by running a Get call to (http://localh
 
 
 ## Employees
+
 **GET Employees** 
 You can access a list of all employees by running a Get call to (http://localhost:5000/api/employee)
 
@@ -244,21 +248,21 @@ You can get the information on a single employee by running a Get call to (http:
 
     Example:
         {       
-            "EmployeeId":"1",
-            "Name":"Jacob Lee",
-            "Supervisor":"Roger Smith",
-            "DepartmentId":"2",
-           
+        "EmployeeId":"1",
+        "Name":"Jacob Lee",
+        "Supervisor":"Roger Smith",
+        "DepartmentId":"2",
+
         }
 
 **POST** You can post a new employee by running a Post call to (http://localhost:5000/api/employee)
 
     Example:
         {       
-                "EmployeeId":"1",
-               "Name":"Jacob Lee",
-               "Supervisor":"Roger Smith",
-               "DepartmentId":"2",
+        "EmployeeId":"1",
+        "Name":"Jacob Lee",
+        "Supervisor":"Roger Smith",
+        "DepartmentId":"2",
         }
 
 
@@ -269,6 +273,7 @@ You can get the information on a single employee by running a Get call to (http:
 
 # Authors:
 Project Manager: Hannah Hall
+
 Contributers:
 - Garrett Ward 
 - John Dulaney 
