@@ -1,3 +1,4 @@
+// Model for the Product Table:
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -5,29 +6,37 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace thoughtless_eels.Models
 {
+     // Create the Product Table: 
     public class Product
     {
+        // Establish the Primary Key:
         [Key]
-        public int ProductId {get; set;}
+        public int ProductId { get; set; }
 
+        // Required Property:
         [Required]
-        public string ProductName {get; set;}
-        
-        [Required]
-        public double Price {get; set;}
+        public string ProductName { get; set; }
 
+        // Required Property:
         [Required]
-        public int Quantity {get; set;}
+        public double Price { get; set; }
 
+        // Required Property:
         [Required]
-        public string Description {get; set;}
+        public int Quantity { get; set; }
 
+        // Required Property:
         [Required]
-        public int CustomerId {get; set;}
-        public Customer Customer {get; set;}
+        public string Description { get; set; }
 
+        // First Foreign Key:
         [Required]
-        public int ProductTypeId {get; set;}
-        public ProductType ProductType {get; set;}        
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
+
+        // Second Foreign Key:
+        [Required]
+        public int ProductTypeId { get; set; }
+        public ProductType ProductType { get; set; }
     }
 }

@@ -1,3 +1,7 @@
+// Just a Note to Remember With Capitalization: 
+// Parameters are lower case 
+// class properties are Upper Case
+
 using System.Linq;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -154,3 +158,4 @@ namespace thoughtless_eels.Controllers {
         }
     }
 }
+
