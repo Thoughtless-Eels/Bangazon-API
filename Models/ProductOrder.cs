@@ -22,5 +22,6 @@ namespace thoughtless_eels.Models
         [Required]
         public int CurrentOrderId { get; set; }
         public CurrentOrder CurrentOrder { get; set; }
+
     }
 }

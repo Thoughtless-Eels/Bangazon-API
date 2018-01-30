@@ -23,5 +23,8 @@ namespace thoughtless_eels.Models
         [Required]
         public int PaymentTypeId { get; set; }
         public PaymentType PaymentType { get; set; }
+        
+        //  
+        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }

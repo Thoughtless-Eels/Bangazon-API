@@ -38,5 +38,8 @@ namespace thoughtless_eels.Models
         [Required]
         public int ProductTypeId { get; set; }
         public ProductType ProductType { get; set; }
+
+        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
+
     }
 }
