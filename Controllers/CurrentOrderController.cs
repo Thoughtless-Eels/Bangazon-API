@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using thoughtless_eels.Data;
 using thoughtless_eels.Models;
 
+
 namespace thoughtless_eels.Controllers {
     // tell .net that this is a controller and how to name the url
     [EnableCors("AllowSpecificOrigin")]
@@ -36,6 +37,15 @@ namespace thoughtless_eels.Controllers {
         // GET
         [HttpGet ("{id}", Name = "GetSingleOrder")]
         public IActionResult Get (int id) {
+            var OrderDetail = _context.CurrentOrder
+                .Where(co => co.CurrentOrderId == id)
+                .Select(co => new {
+                    CurrentOrderId = co.CurrentOrderId,
+                    PaymentTypeId = co.PaymentTypeId,
+                    Buyer = co.Customer.FirstName,
+                    monkeyButt = co.ProductOrders.Select(po => po.Product)
+                });
+
             // Check if the data matches the Model
             if (!ModelState.IsValid) {
                 // check if null, return 404 if true
@@ -50,7 +60,7 @@ namespace thoughtless_eels.Controllers {
                     return NotFound ();
                 }
 
-                return Ok (currentOrder);
+                return Ok (OrderDetail);
                 // Catch statement return 404 for some reason
             } catch (System.InvalidOperationException ex) {
                 return NotFound ();
