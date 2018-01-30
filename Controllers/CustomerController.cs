@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,8 @@ using thoughtless_eels.Models;
 
 
 namespace thoughtless_eels.Controllers
-{
+{   
+    [EnableCors("AllowSpecificOrigin")]
     [Route("api/[controller]")]
     public class CustomerController : Controller
     {
@@ -61,6 +63,7 @@ namespace thoughtless_eels.Controllers
                     throw;
                 }
             }
+            // return a success message
             return CreatedAtRoute("GetSingleCustomer", new { id = customer.CustomerId }, customer);
         }
 
