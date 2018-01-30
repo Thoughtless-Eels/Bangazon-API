@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using thoughtless_eels.Models;
 
 namespace thoughtless_eels.Controllers
 {
-    
+    [EnableCors("AllowSpecificOrigin")]
     [Route("api/[controller]")]
     public class TrainingProgramController : Controller
     {    
